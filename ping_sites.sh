@@ -5,14 +5,14 @@ show_date_time() {
     echo "Current Date and Time: $(date)"
 }
 
-# Function to ping a given host
-ping_host() {
+# Function to perform DNS lookup using dig
+dns_lookup() {
     host=$1
-    echo "Pinging $host..."
-    if ping -c 3 "$host" >/dev/null 2>&1; then
-        echo "$host is reachable."
+    echo "Performing DNS lookup for $host..."
+    if dig +short "$host" >/dev/null 2>&1; then
+        echo "$host is resolvable."
     else
-        echo "$host is not reachable."
+        echo "$host is not resolvable."
     fi
     echo
 }
@@ -20,11 +20,11 @@ ping_host() {
 # Display date and time
 show_date_time
 
-# Ping Google
-ping_host "google.com"
+# Perform DNS lookup for Google
+dns_lookup "google.com"
 
-# Ping Yahoo
-ping_host "yahoo.com"
+# Perform DNS lookup for Yahoo
+dns_lookup "yahoo.com"
 
-# Ping MSN
-ping_host "msn.com"
+# Perform DNS lookup for MSN
+dns_lookup "msn.com"
